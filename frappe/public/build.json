@@ -90,6 +90,7 @@
 		"public/js/frappe/socketio_client.js",
 		"public/js/frappe/router.js",
 		"public/js/frappe/defaults.js",
+		"public/js/frappe/checkbox_editor.js",
 		"public/js/frappe/roles_editor.js",
 		"public/js/lib/microtemplate.js",
 
@@ -100,6 +101,7 @@
 
 		"public/js/frappe/ui/page.html",
 		"public/js/frappe/ui/page.js",
+		"public/js/frappe/ui/find.js",
 		"public/js/frappe/ui/iconbar.js",
 		"public/js/frappe/form/layout.js",
 		"public/js/frappe/ui/field_group.js",
@@ -123,6 +125,7 @@
 		"public/js/frappe/misc/common.js",
 		"public/js/frappe/misc/pretty_date.js",
 		"public/js/frappe/misc/utils.js",
+		"public/js/frappe/misc/test_utils.js",
 		"public/js/frappe/misc/tools.js",
 		"public/js/frappe/misc/datetime.js",
 		"public/js/frappe/misc/number_format.js",
@@ -132,6 +135,7 @@
 
 		"public/js/frappe/ui/upload.html",
 		"public/js/frappe/upload.js",
+		"public/js/integrations/gsuite.js",
 		"public/js/frappe/ui/tree.js",
 
 		"public/js/frappe/views/container.js",
@@ -158,6 +162,7 @@
 		"public/js/frappe/query_string.js",
 
 		"public/js/frappe/ui/charts.js",
+		"public/js/frappe/ui/graph.js",
 		"public/js/frappe/misc/rating_icons.html",
 
 		"public/js/frappe/feedback.js"
@@ -192,6 +197,8 @@
 		"public/js/frappe/form/save.js",
 		"public/js/frappe/form/script_manager.js",
 		"public/js/frappe/form/grid.js",
+		"public/js/frappe/form/grid_row.js",
+		"public/js/frappe/form/grid_row_form.js",
 		"public/js/frappe/form/linked_with.js",
 		"public/js/frappe/form/workflow.js",
 		"public/js/frappe/form/print.js",
@@ -214,7 +221,7 @@
 		"public/css/list.css",
 		"public/css/calendar.css",
 		"public/css/role_editor.css",
-		"public/css/filter_dashboard.css"
+		"public/css/gantt.css"
 	],
 	"js/list.min.js": [
 		"public/js/frappe/ui/listing.html",
@@ -224,9 +231,6 @@
 		"public/js/frappe/model/indicator.js",
 		"public/js/frappe/ui/filters/filters.js",
 		"public/js/frappe/ui/filters/edit_filter.html",
-		"public/js/frappe/ui/filters/filter_dashboard.html",
-		"public/js/frappe/ui/filters/filter_dashboard_value.html",
-		"public/js/frappe/ui/filters/filter_dashboard_head.html",
 		"public/js/frappe/ui/tags.js",
 		"public/js/frappe/ui/like.js",
 		"public/js/frappe/ui/liked_by.html",

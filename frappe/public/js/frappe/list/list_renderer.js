@@ -23,6 +23,7 @@ frappe.views.ListRenderer = Class.extend({
 		this.page_title = __(this.doctype);
 
 		this.set_wrapper();
+		this.setup_filterable();
 		this.prepare_render_view();
 
 		// flag to enable/disable realtime updates in list_view
@@ -108,8 +109,8 @@ frappe.views.ListRenderer = Class.extend({
 		}
 
 		// enabled / disabled
-		if (frappe.meta.has_field(this.doctype, 'enabled')) { add_field('enabled'); };
-		if (frappe.meta.has_field(this.doctype, 'disabled')) { add_field('disabled'); };
+		if (frappe.meta.has_field(this.doctype, 'enabled')) { add_field('enabled'); }
+		if (frappe.meta.has_field(this.doctype, 'disabled')) { add_field('disabled'); }
 
 		// add workflow field (as priority)
 		this.workflow_state_fieldname = frappe.workflow.get_state_fieldname(this.doctype);
@@ -133,7 +134,7 @@ frappe.views.ListRenderer = Class.extend({
 						add_field(df.options.split(':')[1]);
 					} else {
 						add_field(df.options);
-					};
+					}
 				}
 			}
 		});
@@ -270,7 +271,7 @@ frappe.views.ListRenderer = Class.extend({
 
 	setup_filterable: function () {
 		var me = this;
-		this.wrapper.on('click', '.filterable', function (e) {
+		this.list_view.wrapper.on('click', '.result-list .filterable', function (e) {
 			var filters = $(this).attr('data-filter').split('|');
 			var added = false;
 
@@ -309,11 +310,15 @@ frappe.views.ListRenderer = Class.extend({
 
 	render_view: function (values) {
 		var me = this;
-		var $list_items = $(`
-			<div class="list-items">
-			</div>
-		`);
-		me.wrapper.append($list_items);
+		var $list_items = me.wrapper.find('.list-items');
+
+		if($list_items.length === 0) {
+			$list_items = $(`
+				<div class="list-items">
+				</div>
+			`);
+			me.wrapper.append($list_items);
+		}
 
 		values.map(value => {
 			const $item = $(this.get_item_html(value));
@@ -328,7 +333,6 @@ frappe.views.ListRenderer = Class.extend({
 			this.render_tags($item_container, value);
 		});
 
-		this.setup_filterable();
 	},
 
 	// returns html for a data item,
@@ -424,7 +428,7 @@ frappe.views.ListRenderer = Class.extend({
 			this.prepare_when(data, data.modified);
 
 		// nulls as strings
-		for (key in data) {
+		for (var key in data) {
 			if (data[key] == null) {
 				data[key] = '';
 			}
@@ -485,8 +489,8 @@ frappe.views.ListRenderer = Class.extend({
 	prepare_when: function (data, date_str) {
 		if (!date_str) date_str = data.modified;
 		// when
-		data.when = (dateutil.str_to_user(date_str)).split(' ')[0];
-		var diff = dateutil.get_diff(dateutil.get_today(), date_str.split(' ')[0]);
+		data.when = (frappe.datetime.str_to_user(date_str)).split(' ')[0];
+		var diff = frappe.datetime.get_diff(frappe.datetime.get_today(), date_str.split(' ')[0]);
 		if (diff === 0) {
 			data.when = comment_when(date_str);
 		}
